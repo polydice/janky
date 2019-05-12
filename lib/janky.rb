@@ -116,7 +116,7 @@ module Janky
       :reconnect => true,
     }
     if socket = settings["JANKY_DATABASE_SOCKET"]
-      connection[:socket] = socket
+      connection[adapter == "postgresql" ? :host : :socket] = socket
     end
     ActiveRecord::Base.establish_connection(connection)
 
